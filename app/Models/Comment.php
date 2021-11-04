@@ -11,11 +11,11 @@ class Comment extends Model
 
     public function student()
     {
-        return $this->hasOne(Student::class);
+        return $this->belongsTo(Student::class);
     }
 
     public function post()
     {
-        return $this->hasOne(Post::class);
+        return $this->belongsTo(Post::class);
     }
 }
