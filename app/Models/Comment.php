@@ -9,4 +9,13 @@ class Comment extends Model
 {
     use HasFactory;
 
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function post()
+    {
+        return $this->hasOne(Post::class);
+    }
 }
