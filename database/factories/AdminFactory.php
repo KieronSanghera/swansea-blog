@@ -14,7 +14,8 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->firstName(),
+            'position' => $this->faker->jobTitle(),
         ];
     }
 }

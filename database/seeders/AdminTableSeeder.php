@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use Carbon\Factory;
+use Database\Factories\AdminFactory;
 use Illuminate\Database\Seeder;
 
 class AdminTableSeeder extends Seeder
@@ -18,6 +20,7 @@ class AdminTableSeeder extends Seeder
         $a -> name ='Sean';
         $a -> position ='Lecturer';
         $a -> save();
-        //
+        
+        $admins = Admin::factory()->count(10)->create();
     }
 }
