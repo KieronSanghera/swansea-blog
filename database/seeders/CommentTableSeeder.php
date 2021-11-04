@@ -19,6 +19,8 @@ class CommentTableSeeder extends Seeder
         $c -> student_id=1;
         $c -> body='First comment';
         $c ->save();
-        //
+
+
+        $comments = Comment::factory()->count(50)->create();
     }
 }
