@@ -18,6 +18,8 @@ class StudentTableSeeder extends Seeder
         $s -> name ='Kieron';
         $s -> course_year = 2;
         $s -> save();
+
+        $students = Student::factory()->count(10)->create();
         //
     }
 }
