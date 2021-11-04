@@ -17,7 +17,9 @@ class PostTableSeeder extends Seeder
         $p = new Post;
         $p -> admin_id=1;
         $p -> title='First Post';
-        $p -> body='this is the body';
+        $p -> body='This is the body.';
         $p ->save();
+
+        $posts = Post::factory()->count(10)->create();
     }
 }
