@@ -21,4 +21,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/post/{postTitle}', function ($postTitle) {
+    return view('post', ['postTitle'=>$postTitle]);
+});
 require __DIR__.'/auth.php';
