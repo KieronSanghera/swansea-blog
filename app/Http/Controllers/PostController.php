@@ -39,8 +39,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
-        $posts = Post::all();
-        return view('posts.index' , ['posts' =>$posts]);
+        dd($request['title']);
     }
 
     /**
