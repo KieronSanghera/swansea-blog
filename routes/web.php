@@ -27,7 +27,8 @@ Route::get('/post/{postTitle?}', function ($postTitle=null) {
 });
 
 Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/{id}', [PostController::class, 'show'])
-    ->name('posts.show');
+Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::get('/posts', [PostController::class, 'store'])->name('posts.store');
 
 require __DIR__.'/auth.php';
