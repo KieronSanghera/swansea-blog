@@ -13,11 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Admin::factory()
-            ->has(\App\Models\Post::factory()->count(3))
-                ->create();
-        \App\Models\Student::factory()
-            ->has(\App\Models\Comment::factory()->count(3))
-            ->create();
+        $this->call(AdminTableSeeder::class);
+        $this->call(StudentTableSeeder::class);
+        $this->call(PostTableSeeder::class);
+        $this->call(CommentTableSeeder::class);
+        // \App\Models\User::factory(10)->create();
     }
 }
