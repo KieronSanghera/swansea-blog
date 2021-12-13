@@ -22,9 +22,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/post/{postTitle?}', function ($postTitle=null) {
-    return view('post', ['postTitle'=>$postTitle]);
-}); 
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware((['auth']));
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create')->middleware(['auth']);
