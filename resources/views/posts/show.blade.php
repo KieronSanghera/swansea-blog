@@ -7,6 +7,7 @@
     <h1>Post - {{$post->title}}</h1>
     <p>created by: {{$post->admin->name}}</p>
     <p>{{$post->body}}</p>
+    <button href='{{ route('posts.delete') }}''>Delete Post</button>
     
 
 @endsection
