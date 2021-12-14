@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\Twitter;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,6 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        app()->singleton(Twitter::class, function ($app){
+            return new Twitter('Secret Key');
+        });
         //
     }
 
