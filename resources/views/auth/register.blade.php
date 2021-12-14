@@ -45,6 +45,13 @@
                                 name="password_confirmation" required />
             </div>
 
+            <!-- Lecturer Status -->
+            <div class="mt-4">
+                <x-label for="lecturer" :value="__('Lecturer')" />
+
+                <x-input id="lecturer" class="form-check-input mt-2" type="checkbox" name="lecturer" :value="old('lecturer')" />
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
