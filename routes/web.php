@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Services\Twitter;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,12 @@ use App\Http\Controllers\PostController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+app()->singleton(Twitter::class, function ($app){
+    return new Twitter('Secret Key');
+});
+
+Route::get('/twitter', [PostController::class, 'twitterApi'])->name('posts.twitterApi');
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,7 +34,7 @@ Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->mid
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create')->middleware(['auth']);
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware(['auth']);
 Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show')->middleware(['auth']);
-Route::delete('/posts', [PostController::class, 'delete'])->name('posts.destroy')->middleware(['auth']);
+Route::delete('/posts', [PostController::class, 'destroy'])->name('posts.destroy')->middleware(['auth']);
 
 
 
