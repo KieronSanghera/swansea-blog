@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Services\Twitter;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +14,11 @@ use App\Services\Twitter;
 |
 */
 
-app()->singleton(Twitter::class, function ($app){
-    return new Twitter('Secret Key');
-});
-
 Route::get('/twitter', [PostController::class, 'twitterApi'])->name('posts.twitterApi');
+
+Route::get('/w', function () {
+    return view('welcomeReplacement');
+});
 
 Route::get('/', function () {
     return view('welcome');
