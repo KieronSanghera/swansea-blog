@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Admin;
 use App\Services\Twitter;
 
 class PostController extends Controller
@@ -47,8 +48,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request = $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+            'admin_id' => 'required'
+        ]);
+
+        $admin = Admin::where('user_id', $request['admin_id'])->first();
+
+
+        $p = new Post();
+        $p->title = $request['title'];
+        $p->body = $request['body'];
+        $p->admin_id = $admin->id;
+        $p->save();
+        
         //
-        return view('posts.show', ['post' => $request]);
+        session()->flash('message', 'Post created.');
+        return view('posts.show', ['post' => $p]);
     }
 
     /**
