@@ -33,7 +33,7 @@
                                 </p>
                             </blockquote>
                             <figcaption class="font-medium">
-                                <div class="text-blue-700">
+                                <div class=" truncate text-blue-700">
                                     Posted By: {{ $post->admin->name }}
                                 </div>
                             </figcaption>
