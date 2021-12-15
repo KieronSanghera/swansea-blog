@@ -46,5 +46,10 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function admin_id()
+    {
+        return $this->hasOne(User::class);
+    }
 }
 
