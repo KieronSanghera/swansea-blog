@@ -31,13 +31,6 @@
                     autocomplete="current-password" />
             </div>
 
-            <!-- Lecturer Status -->
-            <div class="mt-4">
-                <x-label for="is_lecturer" :value="__('Lecturer')" />
-                <x-input id="is_lecturer" type="hidden" value="0" />
-                <x-input id="is_lecturer" class="form-check-input mt-2" type="checkbox" name="is_lecturer" value="1" />
-            </div>
-
             <!-- Remember Me -->
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
