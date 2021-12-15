@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Student;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -50,6 +51,18 @@ class RegisteredUserController extends Controller
             'is_lecturer' =>$request->has('is_lecturer'),
             'password' => Hash::make($request->password),
         ]);
+
+        if($request->has('is_lecturer')){
+            Admin::create([
+                'name' => $request->name,
+                'user_id' => $user->id,
+            ]);
+        } else {
+            Student::create([
+                'name' => $request->name,
+                'user_id' => $user->id,
+            ]);
+        }
 
 
         event(new Registered($user));

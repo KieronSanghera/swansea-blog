@@ -18,11 +18,9 @@ class AdminTableSeeder extends Seeder
     {
         $a = new Admin;
         $a -> name ='Sean';
-        $a -> is_lecturer=True;
-        $a -> email ='Sean@swan.ac.uk';
-        $a -> password ='$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $a -> user_id = 1;
         $a -> save();
         
-        $admins = Admin::factory()->count(10)->create();
+        #$admins = Admin::factory()->count(10)->create();
     }
 }

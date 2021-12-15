@@ -16,11 +16,10 @@ class StudentTableSeeder extends Seeder
     {
         $s = new Student;
         $s -> name ='Kieron';
-        $s -> email ='Kieron@swan.ac.uk';
-        $s -> password ='$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $s -> user_id=2;
         $s -> save();
 
-        $students = Student::factory()->count(10)->create();
+        #$students = Student::factory()->count(10)->create();
         //
     }
 }
