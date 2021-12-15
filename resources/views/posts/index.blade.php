@@ -34,7 +34,7 @@
                             </blockquote>
                             <figcaption class="font-medium">
                                 <div class="text-blue-700">
-                                    {{ $post->admin->name }}
+                                    Posted By: {{ $post->admin->name }}
                                 </div>
                             </figcaption>
                         </div>
