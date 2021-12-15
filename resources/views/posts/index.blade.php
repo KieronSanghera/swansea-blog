@@ -7,7 +7,7 @@
 @section('content')
     <div class="mx-20 ">
         <div class="grid grid-cols-2">
-            <h1 class="text-5xl my-6 pl-6">Feed</h1>
+            <h1 class="text-5xl my-6 pl-6">Post Feed</h1>
             <a class="justify-self-end self-center pr-6" href='{{ route('posts.create') }}'>
                 <figure class="md:flex bg-blue-400 rounded-xl hover:bg-blue-900 hover:text-white">
                     <div class="p-3">
@@ -16,7 +16,7 @@
                 </figure>
             </a>
         </div>
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 gap-4 p-6">
             @foreach ($posts as $post)
                 <a href='{{ route('posts.show', ['id' => $post->id]) }}'>
                     <figure class="flex-none bg-white rounded-xl p-8 md:p-0 hover:bg-blue-50">
