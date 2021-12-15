@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->bigInteger('admin_id')->unsigned();
             $table->string('title');
-            $table->string('body');
+            $table->text('body');
             $table->timestamps();
 
             $table->foreign('admin_id')->references('id')->on('admins')
