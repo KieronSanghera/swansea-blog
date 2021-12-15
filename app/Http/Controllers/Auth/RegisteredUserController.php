@@ -54,13 +54,13 @@ class RegisteredUserController extends Controller
 
         if($request->has('is_lecturer')){
             Admin::create([
-                'name' => $request->name,
+                'name' => $user->name,
                 'user_id' => $user->id,
             ]);
         } else {
             Student::create([
-                'name' => $request->name,
-                'user_id' => $user->id,
+                'name' => $user->name,
+                'user_id' => 1,
             ]);
         }
 
