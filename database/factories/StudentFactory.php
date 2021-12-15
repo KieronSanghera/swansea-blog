@@ -16,7 +16,7 @@ class StudentFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'user_id' => $this->faker->faker->numberBetween(1,11)
+            'user_id' => $this->faker->numberBetween(12,22)
         ];
     }
 }

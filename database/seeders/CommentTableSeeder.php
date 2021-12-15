@@ -21,6 +21,6 @@ class CommentTableSeeder extends Seeder
         $c ->save();
 
 
-        #$comments = Comment::factory()->count(50)->create();
+        $comments = Comment::factory()->count(50)->create();
     }
 }

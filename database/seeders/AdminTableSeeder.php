@@ -21,6 +21,6 @@ class AdminTableSeeder extends Seeder
         $a -> user_id = 1;
         $a -> save();
         
-        #$admins = Admin::factory()->count(10)->create();
+        $admins = Admin::factory()->count(10)->create();
     }
 }

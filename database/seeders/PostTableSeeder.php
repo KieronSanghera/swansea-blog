@@ -20,6 +20,6 @@ class PostTableSeeder extends Seeder
         $p -> body='This is the body.';
         $p ->save();
 
-        #$posts = Post::factory()->count(10)->create();
+        $posts = Post::factory()->count(10)->create();
     }
 }

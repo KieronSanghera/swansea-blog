@@ -19,7 +19,7 @@ class StudentTableSeeder extends Seeder
         $s -> user_id=2;
         $s -> save();
 
-        #$students = Student::factory()->count(10)->create();
+        $students = Student::factory()->count(10)->create();
         //
     }
 }
