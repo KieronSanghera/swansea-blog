@@ -16,9 +16,6 @@ use App\Http\Controllers\PostController;
 
 Route::get('/twitter', [PostController::class, 'twitterApi'])->name('posts.twitterApi');
 
-Route::get('/w', function () {
-    return view('welcomeReplacement');
-});
 
 Route::get('/', function () {
     return view('welcome');
