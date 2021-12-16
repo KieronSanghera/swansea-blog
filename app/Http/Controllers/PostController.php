@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\Student;
 use App\Services\Twitter;
 use Database\Seeders\CommentTableSeeder;
 
@@ -59,6 +60,7 @@ class PostController extends Controller
         ]);
 
         $admin = Admin::where('user_id', $request['admin_id'])->first();
+        $students = Student::all();
 
 
         $p = new Post();
@@ -69,7 +71,8 @@ class PostController extends Controller
         
         $comments = Comment::where('post_id', $p->id)->get();
         session()->flash('message', 'Post created.');
-        return view('posts.show', ['post' => $p, 'comments' => $comments]);
+        return view('posts.show', ['post' => $p, 'comments' => $comments,
+         'admin' => $admin, 'students' => $students]);
     }
 
     /**
@@ -84,8 +87,9 @@ class PostController extends Controller
         $comments = Comment::where('post_id', $id)->get();
         $post = Post::findOrFail($id);
         $admin = $post->admin()->first();
-        #dd($admin);
-        return view('posts.show', ['post' => $post, 'comments' => $comments, 'admin' => $admin]);
+        $students = Student::all();
+        return view('posts.show', ['post' => $post, 'comments' => $comments,
+         'admin' => $admin, 'students' => $students]);
     }
 
     /**

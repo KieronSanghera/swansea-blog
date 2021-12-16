@@ -60,7 +60,7 @@ class RegisteredUserController extends Controller
         } else {
             Student::create([
                 'name' => $user->name,
-                'user_id' => 1,
+                'user_id' => $user->id,
             ]);
         }
 
