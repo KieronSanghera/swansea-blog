@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
-class CommentsController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -78,8 +78,12 @@ class CommentsController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $post_id = $comment->post_id;
+        $comment->delete();
+
+        return redirect()->route('posts.show', ['id' => $post_id])->with('message', 'Post was deleted');
     }
 }

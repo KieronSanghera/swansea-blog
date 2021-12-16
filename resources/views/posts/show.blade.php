@@ -35,8 +35,11 @@
         <div>
             @if (Auth::user()->id == $comment->student->user_id)
             <form method='POST'
-                    action=''>
-            <button class="float-right bg-blue-200 mr-2 -mt-8 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-full text-xs">remove</button>
+                    action='{{ route('comments.destroy', ['id' => $comment->id]) }}'>
+                    @csrf
+                    @method('DELETE')
+                    <button class="float-right bg-blue-200 mr-2 -mt-8 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-full text-xs">remove</button>
+            </form>
             <button class="float-right bg-blue-200 mr-24 -mt-8 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-full text-xs">edit</button>
             @endif
             <div class="p-8 text-center md:text-left m-10">
