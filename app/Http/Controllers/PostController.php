@@ -81,8 +81,9 @@ class PostController extends Controller
         //
         $comments = Comment::where('post_id', $id)->get();
         $post = Post::findOrFail($id);
-        $posting_user = Admin::where('user_id', $post->admin->id)->first();
-        return view('posts.show', ['post' => $post, 'comments' => $comments ]);
+        $admin = $post->admin()->first();
+        #dd($admin);
+        return view('posts.show', ['post' => $post, 'comments' => $comments, 'admin' => $admin]);
     }
 
     /**

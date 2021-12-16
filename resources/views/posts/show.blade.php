@@ -5,7 +5,12 @@
 @section('content')
     <figure class="m-16 flex-none bg-white rounded-3xl p-8 md:p-0">
         <div class="p-5 float-right">
-            <button class="bg-blue-400 hover:bg-blue-900 hover:text-white font-bold py-2 px-4 rounded-full" method='DELETE' href='{{ route('posts.destroy') }}''>Delete Post</button>
+            @if (Auth::user()->id == $admin->user_id)
+                <button class="bg-blue-400 hover:bg-blue-700 hover:text-white py-2 px-4 rounded-full" method='DELETE' 
+                href='{{ route('posts.destroy') }}''>Delete Post</button>
+            @endif
+            
+            
         </div>
         <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
             <h1 class="text-3xl my-6">{{ $post->title }}</h1>
