@@ -8,6 +8,7 @@
     <div class="mx-20 ">
         <div class="grid grid-cols-2">
             <h1 class="text-5xl my-6 pl-6">Post Feed</h1>
+            @if(Auth::user()->is_lecturer)
             <a class="justify-self-end self-center pr-6" href='{{ route('posts.create') }}'>
                 <figure class="md:flex bg-blue-400 rounded-xl hover:bg-blue-900 hover:text-white">
                     <div class="p-3">
@@ -15,6 +16,7 @@
                     </div>
                 </figure>
             </a>
+            @endif
         </div>
         <div class="grid grid-cols-2 gap-4 p-6">
             @foreach ($posts as $post)

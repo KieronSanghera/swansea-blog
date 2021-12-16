@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Admin;
+use App\Models\User;
 use App\Services\Twitter;
 use Database\Seeders\CommentTableSeeder;
 
@@ -27,8 +28,9 @@ class PostController extends Controller
     public function index()
     {
         //
+        $users = User::all();
         $posts = Post::all();
-        return view('posts.index' , ['posts' =>$posts]);
+        return view('posts.index' , ['posts' =>$posts, 'users' => $users]);
     }
 
     /**
