@@ -6,8 +6,12 @@
     <figure class="m-16 flex-none bg-white rounded-3xl p-8 md:p-0">
         <div class="m-10 p-5 float-right">
             @if (Auth::user()->id == $admin->user_id)
-                <button class="bg-blue-400 hover:bg-blue-700 hover:text-white py-2 px-4 rounded-full -mb-5" method='DELETE'
-                    href='{{ route('posts.destroy') }}''>Delete Post</button>
+            <form method='POST' 
+                action='{{ route('posts.destroy', ['id' => $post->id]) }}'>
+                @csrf
+                @method('DELETE')
+                <button class="bg-blue-400 hover:bg-blue-700 hover:text-white py-2 px-4 rounded-full -mb-5">Delete Post</button>
+            </form>
             @endif
 
 

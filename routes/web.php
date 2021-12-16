@@ -26,11 +26,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
+
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware((['auth']));
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create')->middleware(['auth']);
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware(['auth']);
 Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show')->middleware(['auth']);
-Route::delete('/posts', [PostController::class, 'destroy'])->name('posts.destroy')->middleware(['auth']);
+Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+
 
 
 
