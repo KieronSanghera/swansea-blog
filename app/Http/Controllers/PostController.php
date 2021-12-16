@@ -14,6 +14,12 @@ use Database\Seeders\CommentTableSeeder;
 class PostController extends Controller
 {
 
+    public function apiIndex($id)
+    {
+        $comments = Comment::all()->where('post_id', $id);
+        return $comments;
+    }
+
     public function twitterApi(Twitter $twitter){
 
         $twitter->tweet("Tweeting this");

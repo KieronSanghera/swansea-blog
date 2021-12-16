@@ -34,6 +34,8 @@
         @foreach ($comments as $comment)
         <div>
             @if (Auth::user()->id == $comment->student->user_id)
+            <form method='POST'
+                    action=''>
             <button class="float-right bg-blue-200 mr-2 -mt-8 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-full text-xs">remove</button>
             <button class="float-right bg-blue-200 mr-24 -mt-8 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-full text-xs">edit</button>
             @endif
@@ -47,5 +49,24 @@
         @endforeach
     </figure>
     @endif
+
+
+    <script>
+        var app = new Vue({
+            el:"#comments",
+            data: {
+                comments: [],
+            },
+            mounted() {
+                axios.get("{{ route ('api.comments.index', ['id' => $post->id] ) }}")
+                .then( response => {
+                    this.comments = response.data;
+                })
+                .catch(response => {
+                    consonle.log(response);
+                })
+            },
+        });
+    </script>
 
 @endsection

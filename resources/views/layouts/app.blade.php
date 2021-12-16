@@ -22,7 +22,7 @@
 <body class="font-sans antialiased">
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <div class="min-h-screen pb-6 bg-gray-100">
         @include('layouts.navigation')
 
