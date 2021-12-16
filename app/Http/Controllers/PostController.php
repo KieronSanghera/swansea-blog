@@ -59,19 +59,36 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request = $request->validate([
+        $data = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
             'admin_id' => 'required'
         ]);
 
-        $admin = Admin::where('user_id', $request['admin_id'])->first();
+        if($request->hasFile('file')) {
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png'
+            ]);
+            
+            $request->file->store('product', 'public');
+            
+            $admin = Admin::where('user_id', $data['admin_id'])->first();
+
+            $p = new Post();
+            $p->title = $data['title'];
+            $p->body = $data['body'];
+            $p->file_path = $request->file->hashName();
+            $p->admin_id = $admin->id;
+            $p->save();
+        }
+
+        
         $students = Student::all();
 
 
         $p = new Post();
-        $p->title = $request['title'];
-        $p->body = $request['body'];
+        $p->title = $data['title'];
+        $p->body = $data['body'];
         $p->admin_id = $admin->id;
         $p->save();
         

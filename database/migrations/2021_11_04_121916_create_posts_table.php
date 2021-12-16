@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->bigInteger('admin_id')->unsigned();
             $table->string('title');
+            $table->string('file_path')->nullable();
             $table->text('body');
             $table->timestamps();
 
