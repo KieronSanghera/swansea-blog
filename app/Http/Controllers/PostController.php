@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Comment;
 use App\Models\Admin;
 use App\Services\Twitter;
+use Database\Seeders\CommentTableSeeder;
 
 class PostController extends Controller
 {
@@ -63,9 +65,9 @@ class PostController extends Controller
         $p->admin_id = $admin->id;
         $p->save();
         
-        //
+        $comments = Comment::where('post_id', $p->id)->get();
         session()->flash('message', 'Post created.');
-        return view('posts.show', ['post' => $p]);
+        return view('posts.show', ['post' => $p, 'comments' => $comments]);
     }
 
     /**
@@ -77,8 +79,10 @@ class PostController extends Controller
     public function show($id)
     {
         //
+        $comments = Comment::where('post_id', $id)->get();
         $post = Post::findOrFail($id);
-        return view('posts.show', ['post' => $post]);
+        $posting_user = Admin::where('user_id', $post->admin->id)->first();
+        return view('posts.show', ['post' => $post, 'comments' => $comments ]);
     }
 
     /**
