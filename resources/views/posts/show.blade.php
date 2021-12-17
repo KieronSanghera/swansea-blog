@@ -13,8 +13,6 @@
                 <button class="bg-blue-400 hover:bg-blue-700 hover:text-white py-2 px-4 rounded-full -mb-5">Delete Post</button>
             </form>
             @endif
-
-
         </div>
         <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
             <h1 class="text-3xl my-6">{{ $post->title }}</h1>
@@ -28,7 +26,33 @@
             Leave a comment on this post!</button>
     @endif
 
-    @if ($comments->isNotEmpty())
+    <div id="root">
+        <p v-if="comments.length < 1">no comments</p>
+
+        <h1 class="text-xl pl-24">Comments</h1>
+        <template v-for="comment in comments">
+            <figure class="mx-10 mt-2 flex-none bg-white rounded-3xl p-1">
+                <div class="pl-10">
+                    <ul class="p-4 text-center md:text-left py-10">
+                        
+                        <li class="float-left w-4/6">@{{ comment.body }}</li>
+                        <li class="text-blue-700 w-2/6 md:text-right float-right">commented by:@{{ comment.student_id }}</li>
+                        <form method='POST'
+                            action='{{ route('comments.destroy') }}'>
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="comment_id" v-bind:value=comment.id >
+                            <button class="float-right bg-blue-200 mr-2 -mt-14 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-full text-xs">remove</button>
+                        </form>
+                        
+                        
+                    </ul>
+                </div>
+            </figure>
+        </template>
+    </div>
+
+    {{-- @if ($comments->isNotEmpty())
 
     <figure class="divide-y-2 m-10 flex-none bg-white rounded-3xl p-1">
         @foreach ($comments as $comment)
@@ -51,12 +75,12 @@
         </div>
         @endforeach
     </figure>
-    @endif
+    @endif --}}
 
 
     <script>
         var app = new Vue({
-            el:"#comments",
+            el:"#root",
             data: {
                 comments: [],
             },

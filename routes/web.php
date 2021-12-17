@@ -27,7 +27,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-Route::delete('/comment/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::delete('/comment', [CommentController::class, 'destroy'])->name('comments.destroy');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware((['auth']));
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create')->middleware(['auth']);
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware(['auth']);

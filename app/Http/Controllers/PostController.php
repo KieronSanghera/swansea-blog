@@ -81,6 +81,7 @@ class PostController extends Controller
             $p->admin_id = $admin->id;
             $p->save();
         }
+        $admin = Admin::where('user_id', $data['admin_id'])->first();
 
         
         $students = Student::all();
