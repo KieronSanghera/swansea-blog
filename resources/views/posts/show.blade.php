@@ -22,7 +22,8 @@
     </figure>
 
     @if ($students->contains('user_id', Auth::user()->id))
-        <button class="flex mx-auto md:justify-center text-justify text-right -mt-10 w-9/12 bg-blue-400 hover:bg-blue-700 hover:text-white py-2 px-4 rounded-full">
+        <button class="flex mx-auto md:justify-center text-justify text-right -mt-10 w-9/12 bg-blue-400 hover:bg-blue-700 hover:text-white py-2 px-4 rounded-full"
+        href='{{ route('comments.create', ['id' => $post->id]) }}'>
             Leave a comment on this post!</button>
     @endif
 

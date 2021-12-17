@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Student;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -23,9 +24,10 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('comments.create', ['post_id' => $post]);
     }
 
     /**
@@ -36,7 +38,23 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'post_id' => 'required',
+            'commenter_id'=> 'required',
+            'body' =>'required'
+        ]);
+
+        $student = Student::where('id', $data['commenter_id'])->first();
+
+        $c = new Comment();
+        $c->post_id = $data['post_id'];
+        $c->student_id = $student->id;
+        $c->body = $data['body'];
+        $c->save();
+
+        session()->flash('message', 'comment was added.');
+        return view('posts.show', ['post' => $data['post_id']]);
+
     }
 
     /**

@@ -26,7 +26,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-
+Route::get('/comment/create/{id}', [CommentController::class, 'create'])->name('comments.create');
+Route::post('/comment', [CommentController::class, 'store'])->name('comments.store');
 Route::delete('/comment', [CommentController::class, 'destroy'])->name('comments.destroy');
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index')->middleware((['auth']));
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create')->middleware(['auth']);

@@ -37,7 +37,8 @@ class PostController extends Controller
         //
         $users = User::all();
         $posts = Post::all();
-        return view('posts.index' , ['posts' =>$posts, 'users' => $users]);
+        $posts_first5 = Post::paginate(5);
+        return view('posts.index' , ['posts' =>$posts, 'users' => $users, 'posts_first5' => $posts_first5]);
     }
 
     /**
