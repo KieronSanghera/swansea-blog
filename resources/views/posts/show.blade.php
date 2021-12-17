@@ -36,8 +36,8 @@
                     <ul class="p-4 text-center md:text-left py-10">
                         
                         <li class="float-left w-4/6">@{{ comment.body }}</li>
-                        <li class="text-blue-700 w-2/6 md:text-right float-right">commented by:@{{ comment.name }}</li>
-                        @if (Auth::user()->id == $comments_students)
+                        <li class="text-blue-700 w-2/6 md:text-right float-right">commented by:@{{ comment.name}}</li>
+                        @if (Auth::user()->id == $students->where('id', 2)->first()->user_id)
                             <form method='POST'
                                 action='{{ route('comments.destroy') }}'>
                                 @csrf
@@ -45,7 +45,7 @@
                                 <input type="hidden" name="comment_id" v-bind:value=comment.id >
                                 <button class="float-right bg-blue-200 mr-2 -mt-14 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-full text-xs">remove</button>
                             </form>
-                        
+                        @endif
                     </ul>
                 </div>
             </figure>
