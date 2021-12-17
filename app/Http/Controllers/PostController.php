@@ -16,8 +16,8 @@ class PostController extends Controller
 
     public function apiIndex($id)
     {
-        $comments = Comment::all()->where('post_id', $id);
-        return $comments;
+        $comments_students = Student::join('comments', 'comments.student_id', '=', 'students.id')->get()->where('post_id', $id);
+        return $comments_students;
     }
 
     public function twitterApi(Twitter $twitter){
