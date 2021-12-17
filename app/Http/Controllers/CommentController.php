@@ -81,10 +81,6 @@ class CommentController extends Controller
      */
     public function destroy(Request $request)
     {
-        $comments = Comment::all();
-        $students = Student::all();
-        $comments_students = Student::join('comments', 'comments.student_id', '=', 'students.id')->get()->where('post_id', 1);
-        return dd($comments_students);
 
         $request->validate([
             'comment_id' => 'required'
