@@ -53,32 +53,6 @@
         </template>
     </div>
 
-    {{-- @if ($comments->isNotEmpty())
-
-    <figure class="divide-y-2 m-10 flex-none bg-white rounded-3xl p-1">
-        @foreach ($comments as $comment)
-        <div>
-            @if (Auth::user()->id == $comment->student->user_id)
-            <form method='POST'
-                    action='{{ route('comments.destroy', ['id' => $comment->id]) }}'>
-                    @csrf
-                    @method('DELETE')
-                    <button class="float-right bg-blue-200 mr-2 -mt-8 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-full text-xs">remove</button>
-            </form>
-            <button class="float-right bg-blue-200 mr-24 -mt-8 hover:bg-blue-400 hover:text-white py-2 px-4 rounded-full text-xs">edit</button>
-            @endif
-            <div class="p-8 text-center md:text-left m-10">
-                <p class="float-left w-4/6">{{ $comment->body }}</p>
-                <p class="text-blue-700 w-2/6 md:text-right float-right">commented by: <br>{{ $comment->student->name }}</p>
-            </div>
-
-
-        </div>
-        @endforeach
-    </figure>
-    @endif --}}
-
-
     <script>
         var app = new Vue({
             el:"#root",

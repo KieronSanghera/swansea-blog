@@ -20,12 +20,12 @@ class PostController extends Controller
         return $comments_students;
     }
 
-    public function twitterApi(Twitter $twitter){
+    public function twitterApi(Twitter $twitter)
+    {
 
         $twitter->tweet("Tweeting this");
 
         return "Twitter API";
-
     }
     /**
      * Display a listing of the resource.
@@ -38,7 +38,7 @@ class PostController extends Controller
         $users = User::all();
         $posts = Post::all();
         $posts_first5 = Post::paginate(5);
-        return view('posts.index' , ['posts' =>$posts, 'users' => $users, 'posts_first5' => $posts_first5]);
+        return view('posts.index', ['posts' => $posts, 'users' => $users, 'posts_first5' => $posts_first5]);
     }
 
     /**
@@ -66,13 +66,13 @@ class PostController extends Controller
             'admin_id' => 'required'
         ]);
 
-        if($request->hasFile('file')) {
+        if ($request->hasFile('file')) {
             $request->validate([
                 'image' => 'mimes:jpeg,bmp,png'
             ]);
-            
+
             $request->file->store('product', 'public');
-            
+
             $admin = Admin::where('user_id', $data['admin_id'])->first();
 
             $p = new Post();
@@ -81,23 +81,26 @@ class PostController extends Controller
             $p->file_path = $request->file->hashName();
             $p->admin_id = $admin->id;
             $p->save();
+        } else {
+            $admin = Admin::where('user_id', $data['admin_id'])->first();
+
+
+            $students = Student::all();
+
+
+            $p = new Post();
+            $p->title = $data['title'];
+            $p->body = $data['body'];
+            $p->admin_id = $admin->id;
+            $p->save();
         }
-        $admin = Admin::where('user_id', $data['admin_id'])->first();
 
-        
-        $students = Student::all();
-
-
-        $p = new Post();
-        $p->title = $data['title'];
-        $p->body = $data['body'];
-        $p->admin_id = $admin->id;
-        $p->save();
-        
         $comments = Comment::where('post_id', $p->id)->get();
         session()->flash('message', 'Post created.');
-        return view('posts.show', ['post' => $p, 'comments' => $comments,
-         'admin' => $admin, 'students' => $students]);
+        return view('posts.show', [
+            'post' => $p, 'comments' => $comments,
+            'admin' => $admin, 'students' => $students
+        ]);
     }
 
     /**
@@ -113,8 +116,10 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $admin = $post->admin()->first();
         $students = Student::all();
-        return view('posts.show', ['post' => $post, 'comments' => $comments,
-         'admin' => $admin, 'students' => $students]);
+        return view('posts.show', [
+            'post' => $post, 'comments' => $comments,
+            'admin' => $admin, 'students' => $students
+        ]);
     }
 
     /**
